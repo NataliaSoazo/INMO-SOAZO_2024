@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\INMO-SOAZO_2024.props" />
+</Project>

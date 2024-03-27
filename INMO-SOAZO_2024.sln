@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "INMO-SOAZO_2024", "INMO-SOAZO_2024.csproj", "{26C609F6-1A34-4486-AE78-EFE62BDA8C28}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26C609F6-1A34-4486-AE78-EFE62BDA8C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26C609F6-1A34-4486-AE78-EFE62BDA8C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26C609F6-1A34-4486-AE78-EFE62BDA8C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26C609F6-1A34-4486-AE78-EFE62BDA8C28}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {105B2F49-CB4F-4CC2-B3D7-CAE7DD8A2078}
+	EndGlobalSection
+EndGlobal

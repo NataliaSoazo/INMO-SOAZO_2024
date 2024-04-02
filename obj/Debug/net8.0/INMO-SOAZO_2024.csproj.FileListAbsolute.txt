@@ -53,3 +53,4 @@ C:\Users\Natalia Soazo\Desktop\ENTORNO .NET\INMO-SOAZO_2024\obj\Debug\net8.0\ref
 C:\Users\Natalia Soazo\Desktop\ENTORNO .NET\INMO-SOAZO_2024\obj\Debug\net8.0\INMO-SOAZO_2024.pdb
 C:\Users\Natalia Soazo\Desktop\ENTORNO .NET\INMO-SOAZO_2024\obj\Debug\net8.0\INMO-SOAZO_2024.genruntimeconfig.cache
 C:\Users\Natalia Soazo\Desktop\ENTORNO .NET\INMO-SOAZO_2024\obj\Debug\net8.0\ref\INMO-SOAZO_2024.dll
+C:\Users\Natalia Soazo\Desktop\ENTORNO .NET\INMO-SOAZO_2024\obj\Debug\net8.0\INMO-SOAZO_2024.sourcelink.json

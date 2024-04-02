@@ -53,7 +53,7 @@ public class RepositorioInquilino
         int id = 0;
         using (var connection = new MySqlConnection(ConnectionString)){
             var sql = @$"INSERT INTO inquilinos ({nameof(Inquilino.Dni)},{nameof(Inquilino.Nombre)},{nameof(Inquilino.Apellido)},{nameof(Inquilino.Email)},{nameof(Inquilino.Telefono)},{nameof(Inquilino.Domicilio)},{nameof(Inquilino.Ciudad)})
-                                            VALUES (@{nameof(Inquilino.Id)}, @{nameof(Inquilino.Dni)}, @{nameof(Inquilino.Nombre)}, @{nameof(Inquilino.Apellido)}, @{nameof(Inquilino.Email)}, @{nameof(Inquilino.Telefono)}, @{nameof(Inquilino.Domicilio)}, @{nameof(Inquilino.Ciudad)});            
+                                            VALUES (@{nameof(Inquilino.Dni)}, @{nameof(Inquilino.Nombre)}, @{nameof(Inquilino.Apellido)}, @{nameof(Inquilino.Email)}, @{nameof(Inquilino.Telefono)}, @{nameof(Inquilino.Domicilio)}, @{nameof(Inquilino.Ciudad)});            
              SELECT LAST_INSERT_ID();";
             using (var command = new MySqlCommand(sql, connection)){
                 command.Parameters.AddWithValue($"@{nameof(Inquilino.Nombre)}", inquilino.Nombre);

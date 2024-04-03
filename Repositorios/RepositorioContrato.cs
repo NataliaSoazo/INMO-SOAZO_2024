@@ -104,13 +104,13 @@ public class RepositorioContrato
         int id = 0;
         using (var connection = new MySqlConnection(ConnectionString)){
             string sql = $@"INSERT INTO Contratos ( {nameof(Contrato.FechaInicio)}, {nameof(Contrato.FechaTerm)}, {nameof(Contrato.IdInquilino)}, {nameof(Contrato.IdInmueble)}) 
-                VALUES (@fechaInicio, @fechaTerm, @idInquilino, @idInmueble);           
+                VALUES (@{nameof(Contrato.FechaInicio)}, @{nameof(Contrato.FechaTerm)}, @{nameof(Contrato.IdInquilino)},@{nameof(Contrato.IdInmueble)});           
                 SELECT LAST_INSERT_ID();";
             using (var command = new MySqlCommand(sql, connection)){
                 command.Parameters.AddWithValue($"@{nameof(Contrato.FechaInicio)}", contrato.FechaInicio);
                 command.Parameters.AddWithValue($"@{nameof(Contrato.FechaTerm)}", contrato.FechaTerm);
                 command.Parameters.AddWithValue($"@{nameof(Contrato.IdInquilino)}", contrato.IdInmueble);
-                command.Parameters.AddWithValue($"@{nameof(Contrato.IdInmueble)}",contrato.IdInmueble);
+                command.Parameters.AddWithValue($"@{nameof(Contrato.IdInmueble)}", contrato.IdInmueble);
                
                 connection.Open();
                 id = Convert.ToInt32(command.ExecuteScalar());

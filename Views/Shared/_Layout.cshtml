@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - INMO_SOAZO_2024</title>
-    
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/INMO_SOAZO_2024.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+  
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -20,28 +20,28 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Propietario" asp-action="Index">Propietarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Inquilino" asp-action="Index">Inquilinos</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Inmueble" asp-action="Index">Inmuebles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contrato" asp-action="Index">Contratos</a>
-                        </li>
                     </ul>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-xl-end">
+                        <div class="btn btn-warning"> <a class="py-2 d-none d-md-inline-block"
+                                asp-controller="Propietario" asp-action="Index"><span class="lnr lnr-user"></span>
+                                Propietarios</a></div>
+                        <div class="btn btn-warning"><a class="py-2 d-none d-md-inline-block" asp-controller="Inquilino"
+                                asp-action="Index"><span class="lnr lnr-apartment"></span> Inquilinos</a> </div>
+                        <div class="btn btn-warning"><a class="py-2 d-none d-md-inline-block" asp-controller="Inmueble"
+                                asp-action="Index"><span class="lnr lnr-enter"></span> Inmuebles</a></div>
+                        <div class="btn btn-warning"><a class="py-2 d-none d-md-inline-block" asp-controller="Contrato"
+                                asp-action="Index"><span class="lnr lnr-enter"></span> Contratos</a></div>
+                        <div class="btn btn-warning"><a class="py-2 d-none d-md-inline-block" asp-controller="Pagos"
+                                asp-action="Index"><span class="lnr lnr-enter"></span> Pagos</a></div>
+                        <div class="btn btn-warning"><a class="py-2 d-none d-md-inline-block" asp-controller="Usuario"
+                                asp-action="Login"><span class="lnr lnr-enter"></span> Ingrese con su usuario</a></div>
+
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
+    
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

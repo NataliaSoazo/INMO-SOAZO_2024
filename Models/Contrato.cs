@@ -8,15 +8,15 @@ namespace INMO_SOAZO_2024.Models;
         public int Id { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "Fecha de inicio del contrato")]
+        [Display(Name = "Inicio del contrato")]
         public DateTime FechaInicio { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "Culminación  contrato")]
+        [Display(Name = "Culminación")]
         public DateTime FechaTerm { get; set; }
 
 
-        [Display(Name = "Código del Locatario")]
+        [Display(Name = "Código Locatario")]
         public int IdInquilino { get; set; }
 
         [Required]

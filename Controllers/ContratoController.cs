@@ -2,6 +2,8 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using INMO_SOAZO_2024.Models;
 using ZstdSharp.Unsafe;
+using System;
+using System.Runtime.ConstrainedExecution;
 
 namespace INMO_SOAZO_2024.Controllers;
 
@@ -21,10 +23,10 @@ public class ContratoController : Controller
         var lista = rp.GetContratos();
         return View(lista);
     }
-    public IActionResult Editar(int id)
+        public IActionResult Editar(int id)
          
-    {    RepositorioInmueble repoInmueble = new RepositorioInmueble();
-        ViewBag.Inmueble = repoInmueble.GetInmuebles();
+    {   RepositorioInmueble repoInmueble = new RepositorioInmueble();
+        ViewBag.Inmueble = repoInmueble.ObtenerTodos();
         RepositorioInquilino repoInquilino = new RepositorioInquilino();
         ViewBag.Inquilino = repoInquilino.GetInquilinos();
 
@@ -37,7 +39,25 @@ public class ContratoController : Controller
         }
     }
     
-    public IActionResult Guardar( Contrato contrato)
+    public ActionResult Crear(int id)
+        {
+        RepositorioInmueble repoInmueble = new RepositorioInmueble();
+        ViewBag.Inmueble = repoInmueble.ObtenerTodos();
+        RepositorioInquilino repoInquilino = new RepositorioInquilino();
+        ViewBag.Inquilino = repoInquilino.GetInquilinos();
+            return View();
+        }
+        
+    public ActionResult Agregar(Contrato contrato)
+        {    RepositorioContrato rp = new RepositorioContrato();   
+             rp.AltaContrato(contrato);
+        return RedirectToAction(nameof(Index));
+        }
+          
+        
+        
+    
+    public IActionResult Guardar(Contrato contrato)
     {  
        RepositorioContrato rp = new RepositorioContrato();
         if(contrato.Id  > 0){

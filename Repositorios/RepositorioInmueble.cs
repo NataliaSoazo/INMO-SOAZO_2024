@@ -16,7 +16,7 @@ public class RepositorioInmueble
 
     }
 
-    public IList<Inmueble> GetInmuebles()
+   /*public IList<Inmueble> GetInmuebles()
     {
         var inmuebles = new List<Inmueble>();
         using (var connection = new MySqlConnection(ConnectionString))
@@ -53,7 +53,7 @@ public class RepositorioInmueble
             }
          }
          return inmuebles;
-    }
+    }*/
 
 
     public IList<Inmueble> ObtenerTodos()
@@ -165,9 +165,9 @@ public class RepositorioInmueble
     public int ModificarInmueble(Inmueble inmueble){
         int id = 0;
         using (var connection = new MySqlConnection(ConnectionString)){
-            var sql = @$"INSERT INTO inmuebles ({nameof(Inmueble.Direccion)}, {nameof(Inmueble.Ambientes)}, {nameof(Inmueble.Uso)},  {nameof(Inmueble.Valor)}, {nameof(Inmueble.Disponible)}, {nameof(Inmueble.PropietarioId)})
-                                            VALUES (@{nameof(Inmueble.Direccion)}, @{nameof(Inmueble.Ambientes)}, @{nameof(Inmueble.Uso)},  @{nameof(Inmueble.Valor)}, @{nameof(Inmueble.Disponible)}, @{nameof(Inmueble.PropietarioId)});            
-             SELECT LAST_INSERT_ID();";
+            string sql = "UPDATE Inmuebles SET " +
+					"Direccion=@direccion, Ambientes=@ambientes, Uso=@uso, Valor=@valor, Disponible=@disponible, PropietarioId=@propietarioId " +
+					"WHERE Id = @id";
             using (var command = new MySqlCommand(sql, connection)){
                 command.Parameters.AddWithValue($"@{nameof(Inmueble.Direccion)}", inmueble.Direccion);
                 command.Parameters.AddWithValue($"@{nameof(Inmueble.Ambientes)}", inmueble.Ambientes);

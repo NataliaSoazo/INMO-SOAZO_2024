@@ -100,7 +100,7 @@ public class RepositorioInmueble
         int id = 0;
         using (var connection = new MySqlConnection(ConnectionString)){
             var sql = @$"INSERT INTO inmuebles ({nameof(Inmueble.Direccion)}, {nameof(Inmueble.Ambientes)}, {nameof(Inmueble.Uso)},  {nameof(Inmueble.Valor)}, {nameof(Inmueble.Disponible)}, {nameof(Inmueble.PropietarioId)})
-                                            VALUES (@{nameof(Inmueble.Direccion)}, @{nameof(Inmueble.Ambientes)}, @{nameof(Inmueble.Uso)},  @{nameof(Inmueble.Valor)}, @{nameof(Inmueble.Disponible)}, @{nameof(Inmueble.PropietarioId)});            
+                                     VALUES (@{nameof(Inmueble.Direccion)}, @{nameof(Inmueble.Ambientes)}, @{nameof(Inmueble.Uso)},  @{nameof(Inmueble.Valor)}, @{nameof(Inmueble.Disponible)}, @{nameof(Inmueble.PropietarioId)});            
              SELECT LAST_INSERT_ID();";
             using (var command = new MySqlCommand(sql, connection)){
                 command.Parameters.AddWithValue($"@{nameof(Inmueble.Direccion)}", inmueble.Direccion);
@@ -169,6 +169,7 @@ public class RepositorioInmueble
 					"Direccion=@direccion, Ambientes=@ambientes, Uso=@uso, Valor=@valor, Disponible=@disponible, PropietarioId=@propietarioId " +
 					"WHERE Id = @id";
             using (var command = new MySqlCommand(sql, connection)){
+                command.Parameters.AddWithValue($"@{nameof(Inmueble.Id)}", inmueble.Id);
                 command.Parameters.AddWithValue($"@{nameof(Inmueble.Direccion)}", inmueble.Direccion);
                 command.Parameters.AddWithValue($"@{nameof(Inmueble.Ambientes)}", inmueble.Ambientes);
                 command.Parameters.AddWithValue($"@{nameof(Inmueble.Uso)}", inmueble.Uso);

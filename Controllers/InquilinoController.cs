@@ -47,4 +47,10 @@ public class InquilinoController : Controller
         rp.Eliminar(id);
         return RedirectToAction(nameof(Index));
     }    
+    public IActionResult Detalles(int id)
+    {  
+        RepositorioInquilino rp = new RepositorioInquilino();
+            var inquilino = rp.getInquilino(id);
+            return View(inquilino); 
+    }    
 }

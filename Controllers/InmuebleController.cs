@@ -50,4 +50,11 @@ public class InmuebleController : Controller
         rp.EliminarInmueble(id);
         return RedirectToAction(nameof(Index));
     }    
+
+    public IActionResult Detalles( int id)
+    {  
+        RepositorioInmueble rp = new RepositorioInmueble();
+            var i = rp.getInmueble(id);
+            return View(i); 
+    }   
 }

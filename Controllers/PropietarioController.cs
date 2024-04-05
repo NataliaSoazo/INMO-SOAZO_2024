@@ -47,4 +47,10 @@ public class PropietarioController : Controller
         rp.EliminarPersona(id);
         return RedirectToAction(nameof(Index));
     }    
+    public IActionResult Detalles( int id)
+    {  
+        RepositorioPropietario rp = new RepositorioPropietario();
+            var propietario = rp.getPropietario(id);
+            return View(propietario); 
+    }    
 }

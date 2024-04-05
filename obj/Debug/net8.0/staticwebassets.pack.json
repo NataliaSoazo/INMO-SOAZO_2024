@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\INMO-SOAZO_2024.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\Natalia Soazo\\Desktop\\ENTORNO .NET\\INMO-SOAZO_2024\\wwwroot\\css\\fondo.css",
+      "PackagePath": "staticwebassets\\css\\fondo.css"
+    },
+    {
       "Id": "C:\\Users\\Natalia Soazo\\Desktop\\ENTORNO .NET\\INMO-SOAZO_2024\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

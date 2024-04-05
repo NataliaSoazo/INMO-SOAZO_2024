@@ -17,8 +17,4 @@ html {
   min-height: 100%;
 }
 
-body {
-  background-image: url('/Views/images/casa.png'); /* Ruta relativa a la ubicación del archivo CSS */
-  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir el contenedor */
-  margin-bottom: 60px;
-}
+

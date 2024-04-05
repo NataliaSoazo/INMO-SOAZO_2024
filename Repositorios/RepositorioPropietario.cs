@@ -110,12 +110,18 @@ public class RepositorioPropietario
     }
 
     public int ModificarPropietario(Propietario propietario){
-        int id = 0;
         using (var connection = new MySqlConnection(ConnectionString)){
-            var sql = @$"INSERT INTO propietarios ({nameof(Propietario.Nombre)},{nameof(Propietario.Apellido)},{nameof(Propietario.Dni)},{nameof(Propietario.Email)},{nameof(Propietario.Telefono)},{nameof(Propietario.Domicilio)},{nameof(Propietario.Ciudad)})
-                                            VALUES (@{nameof(Propietario.Nombre)},@{nameof(Propietario.Apellido)},@{nameof(Propietario.Dni)},@{nameof(Propietario.Email)},@{nameof(Propietario.Telefono)},@{nameof(Propietario.Domicilio)},@{nameof(Propietario.Ciudad)});            
-             SELECT LAST_INSERT_ID();";
+            var sql = @$"UPDATE propietarios 
+            SET {nameof(Propietario.Nombre)} = @{nameof(Propietario.Nombre)},
+            {nameof(Propietario.Apellido)} = @{nameof(Propietario.Apellido)},
+            {nameof(Propietario.Dni)} = @{nameof(Propietario.Dni)},
+            {nameof(Propietario.Email)} = @{nameof(Propietario.Email)},
+            {nameof(Propietario.Telefono)} = @{nameof(Propietario.Telefono)},
+            {nameof(Propietario.Domicilio)} = @{nameof(Propietario.Domicilio)},
+            {nameof(Propietario.Ciudad)} = @{nameof(Propietario.Ciudad)}
+            WHERE {nameof(Propietario.Id)} = @{nameof(Propietario.Id)} ";     
             using (var command = new MySqlCommand(sql, connection)){
+                command.Parameters.AddWithValue($"@{nameof(Propietario.Id)}", propietario.Id);
                 command.Parameters.AddWithValue($"@{nameof(Propietario.Nombre)}", propietario.Nombre);
                 command.Parameters.AddWithValue($"@{nameof(Propietario.Apellido)}", propietario.Apellido);
                 command.Parameters.AddWithValue($"@{nameof(Propietario.Dni)}", propietario.Dni);
@@ -125,11 +131,8 @@ public class RepositorioPropietario
                 command.Parameters.AddWithValue($"@{nameof(Propietario.Ciudad)}", propietario.Ciudad);
 
                 connection.Open();
-                id = Convert.ToInt32(command.ExecuteScalar());
-                propietario.Id = id;
+                command.ExecuteNonQuery();
                 connection.Close();
-
-
             }
         }
         return 0;

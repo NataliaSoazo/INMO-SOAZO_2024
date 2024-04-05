@@ -110,12 +110,18 @@ public class RepositorioInquilino
     }
 
     public int ModificarInquilino(Inquilino inquilino){
-        int id = 0;
-        using (var connection = new MySqlConnection(ConnectionString)){
-            var sql = @$"INSERT INTO inquilino ({nameof(Inquilino.Id)}, {nameof(Inquilino.Dni)}, {nameof(Inquilino.Nombre)}, {nameof(Inquilino.Apellido)},  {nameof(Inquilino.Email)}, {nameof(Inquilino.Telefono)}, {nameof(Inquilino.Domicilio)}, {nameof(Inquilino.Ciudad)})
-                                            VALUES (@{nameof(Inquilino.Id)}, @{nameof(Inquilino.Dni)}, @{nameof(Inquilino.Nombre)}, @{nameof(Inquilino.Apellido)},  @{nameof(Inquilino.Email)}, @{nameof(Inquilino.Telefono)}, @{nameof(Inquilino.Domicilio)}, @{nameof(Inquilino.Ciudad)});            
-             SELECT LAST_INSERT_ID();";
-            using (var command = new MySqlCommand(sql, connection)){
+         using (var connection = new MySqlConnection(ConnectionString))
+        {   var sql = @$"UPDATE inquilinos 
+            SET {nameof(Inquilino.Nombre)} = @{nameof(Inquilino.Nombre)},
+                {nameof(Inquilino.Apellido)} = @{nameof(Inquilino.Apellido)},
+                {nameof(Inquilino.Dni)} = @{nameof(Inquilino.Dni)},
+                {nameof(Inquilino.Email)} = @{nameof(Inquilino.Email)},
+                {nameof(Inquilino.Telefono)} = @{nameof(Inquilino.Telefono)},
+                {nameof(Inquilino.Domicilio)} = @{nameof(Inquilino.Domicilio)},
+                {nameof(Inquilino.Ciudad)} = @{nameof(Inquilino.Ciudad)}
+            WHERE {nameof(Inquilino.Id)} = @{nameof(Inquilino.Id)}";
+            using (var command = new MySqlCommand(sql, connection))
+            {   command.Parameters.AddWithValue($"@{nameof(Inquilino.Id)}", inquilino.Id);
                 command.Parameters.AddWithValue($"@{nameof(Inquilino.Nombre)}", inquilino.Nombre);
                 command.Parameters.AddWithValue($"@{nameof(Inquilino.Apellido)}",inquilino.Apellido);
                 command.Parameters.AddWithValue($"@{nameof(Inquilino.Dni)}", inquilino.Dni);
@@ -124,11 +130,8 @@ public class RepositorioInquilino
                 command.Parameters.AddWithValue($"@{nameof(Inquilino.Domicilio)}",inquilino.Domicilio);
                 command.Parameters.AddWithValue($"@{nameof(Inquilino.Ciudad)}", inquilino.Ciudad);
                 connection.Open();
-                id = Convert.ToInt32(command.ExecuteScalar());
-                inquilino.Id = id;
+                command.ExecuteNonQuery();
                 connection.Close();
-
-
             }
         }
         return 0;

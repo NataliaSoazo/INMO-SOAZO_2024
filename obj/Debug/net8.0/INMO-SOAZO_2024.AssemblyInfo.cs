@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("INMO-SOAZO_2024")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+925c541ef08b90d286a37778b236811005c40909")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1cf30ab9d86a574b15ea78af556ecd0f5066585")]
 [assembly: System.Reflection.AssemblyProductAttribute("INMO-SOAZO_2024")]
 [assembly: System.Reflection.AssemblyTitleAttribute("INMO-SOAZO_2024")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

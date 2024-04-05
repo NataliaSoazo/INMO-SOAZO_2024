@@ -34,7 +34,7 @@ public class PropietarioController : Controller
     public IActionResult Guardar( Propietario propietario)
     {  
         RepositorioPropietario rp = new RepositorioPropietario();
-        if(propietario.Id  > 0){
+        if(propietario.Id > 0){
             rp.ModificarPropietario(propietario);
 
         }else

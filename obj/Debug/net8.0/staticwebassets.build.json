@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tS02n3QhdQDlQgY6dsglSJcVt/9jTkJTJq3qb/InTj8=",
+  "Hash": "MOwQ7x0wkty2LTZ8uQUEk6wiY1QF2YC95cxNxCOK7go=",
   "Source": "INMO-SOAZO_2024",
   "BasePath": "_content/INMO-SOAZO_2024",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Natalia Soazo\\Desktop\\ENTORNO .NET\\INMO-SOAZO_2024\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\INMO-SOAZO_2024.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Natalia Soazo\\Desktop\\ENTORNO .NET\\INMO-SOAZO_2024\\wwwroot\\css\\fondo.css",
+      "SourceId": "INMO-SOAZO_2024",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Natalia Soazo\\Desktop\\ENTORNO .NET\\INMO-SOAZO_2024\\wwwroot\\",
+      "BasePath": "_content/INMO-SOAZO_2024",
+      "RelativePath": "css/fondo.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\fondo.css"
     },
     {
       "Identity": "C:\\Users\\Natalia Soazo\\Desktop\\ENTORNO .NET\\INMO-SOAZO_2024\\wwwroot\\css\\site.css",

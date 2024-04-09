@@ -1,27 +1,25 @@
 ﻿@model Inmueble
 @{
     ViewData["Title"] = "Inmueble";
-    int id = Model == null? 0: Model.Id;
+    int id = Model == null ? 0 : Model.Id;
 }
-
-
 
 <h5>Inmueble</h5>
 <hr />
 <div class="row">
     <div class="col">
-        <form asp-action="Guardar"class="row g-3">
+        <form asp-action="Guardar" class="row g-3">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group col-2">
                 <label class="control-label">CODIGO</label>
                 <input name="Id" class="form-control" value="@id" readonly />
             </div>
-             <div class="form-group  col-4">
+            <div class="form-group col-4">
                 <label asp-for="PropietarioId" class="control-label"></label>
                 <select class="form-control" name="PropietarioId">
                     @foreach (var item in (IList<Propietario>)ViewBag.Propietarios)
                     {
-                       @:<option @(item.Id == Model.PropietarioId ? "selected" : " ") value="@item.Id">@(item.Nombre + " " + item.Apellido)</option>
+                        @:<option @(item.Id == Model?.PropietarioId ? "selected" : "") value="@item.Id">@item.Nombre @item.Apellido</option>
                     }
                 </select>
             </div>
@@ -30,7 +28,7 @@
                 <input asp-for="Direccion" class="form-control" />
                 <span asp-validation-for="Direccion" class="text-danger"></span>
             </div>
-            <div class="form-group  col-4">
+            <div class="form-group col-4">
                 <label asp-for="Ambientes" class="control-label"></label>
                 <input asp-for="Ambientes" class="form-control" />
                 <span asp-validation-for="Ambientes" class="text-danger"></span>
@@ -40,17 +38,34 @@
                 <input asp-for="Uso" class="form-control" />
                 <span asp-validation-for="Uso" class="text-danger"></span>
             </div>
-            <div class="form-group  col-4">
+            <div class="form-group col-4">
                 <label asp-for="Valor" class="control-label"></label>
                 <input asp-for="Valor" class="form-control" />
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
-            <div class="form-group  col-4">
+            <div class="form-group col-4">
                 <label asp-for="Disponible" class="control-label"></label>
-                <input asp-for="Disponible" class="form-control" />
-                <span asp-validation-for="Disponible" class="text-danger"></span>
+                 <select class="form-control" name="Disponible">
+        @if (Model != null)
+        {
+            if (Model.Disponible == "SI")
+            {
+                <option value="SI" selected>SI</option>
+                <option value="NO">NO</option>
+            }
+            else
+            {
+              <option value="NO" selected>No</option>
+              <option value="SI" >SI</option>
+            }
+        }
+        else
+        {
+            <option value="SI">SI</option>
+            <option value="NO">NO</option>
+        }
+    </select>
             </div>
-           
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
@@ -58,8 +73,7 @@
     </div>
 </div>
 
-    <a asp-action="Index">Volver al listado</a>
-</div>
+<a asp-action="Index">Volver al listado</a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

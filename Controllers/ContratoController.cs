@@ -18,58 +18,50 @@ public class ContratoController : Controller
 
     public IActionResult Index()
 
-    { 
+    {
         RepositorioContrato rp = new RepositorioContrato();
         var lista = rp.GetContratos();
         return View(lista);
     }
-        public IActionResult Editar(int id)
-         
-    {   RepositorioInmueble repoInmueble = new RepositorioInmueble();
-        ViewBag.Inmueble = repoInmueble.ObtenerTodos();
+    public IActionResult Editar(int id)
+    {
+        RepositorioInmueble repoInmueble = new RepositorioInmueble();
+        ViewBag.Inmuebles = repoInmueble.ObtenerTodos();
         RepositorioInquilino repoInquilino = new RepositorioInquilino();
-        ViewBag.Inquilino = repoInquilino.GetInquilinos();
+        ViewBag.Inquilinos = repoInquilino.GetInquilinos();
 
-        if (id > 0){
+        if (id > 0)
+        {
             RepositorioContrato rp = new RepositorioContrato();
             var contrato = rp.getContrato(id);
-            return View(contrato); 
-        } else {
+            return View(contrato);
+        }
+        else
+        {
             return View();
         }
     }
-    
-    public ActionResult Crear(int id)
+
+
+
+
+    public ActionResult Guardar(Contrato contrato)
+    {
+        RepositorioContrato rp = new RepositorioContrato();
+        if (contrato.Id > 0)
         {
-        RepositorioInmueble repoInmueble = new RepositorioInmueble();
-        ViewBag.Inmueble = repoInmueble.ObtenerTodos();
-        RepositorioInquilino repoInquilino = new RepositorioInquilino();
-        ViewBag.Inquilino = repoInquilino.GetInquilinos();
-            return View();
-        }
-        
-    public ActionResult Agregar(Contrato contrato)
-        {    RepositorioContrato rp = new RepositorioContrato();   
-             rp.AltaContrato(contrato);
-        return RedirectToAction(nameof(Index));
-        }
-          
-        
-        
-    
-    public IActionResult Guardar(Contrato contrato)
-    {  
-       RepositorioContrato rp = new RepositorioContrato();
-        if(contrato.Id  > 0){
             rp.ModificarContrato(contrato);
 
-        }else
-        rp.AltaContrato(contrato);
+        }
+        else
+            rp.AltaContrato(contrato);
         return RedirectToAction(nameof(Index));
+
     }
-     public IActionResult Eliminar( int id)
-    {  RepositorioContrato rp = new RepositorioContrato();
+    public IActionResult Eliminar(int id)
+    {
+        RepositorioContrato rp = new RepositorioContrato();
         rp.EliminarContrato(id);
         return RedirectToAction(nameof(Index));
-    }    
+    }
 }

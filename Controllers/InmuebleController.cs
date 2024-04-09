@@ -24,7 +24,8 @@ public class InmuebleController : Controller
     public IActionResult Editar(int id)
          
     {    RepositorioPropietario repoPropietario = new RepositorioPropietario();
-        ViewBag.Propietarios = repoPropietario.GetPropietarios();
+         ViewBag.Propietarios = repoPropietario.GetPropietarios();
+         
 
         if (id > 0){
             RepositorioInmueble rp = new RepositorioInmueble();

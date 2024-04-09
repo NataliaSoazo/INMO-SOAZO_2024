@@ -16,7 +16,7 @@ public class RepositorioContrato
         var contratos = new List<Contrato>();
         using (var connection = new MySqlConnection(ConnectionString))
         {
-            string sql = $@"SELECT i.{nameof(Contrato.Id)}, {nameof(Contrato.FechaInicio)}, {nameof(Contrato.FechaTerm)}, {nameof(Contrato.IdInquilino)},
+            string sql = $@"SELECT i.{nameof(Contrato.Id)}, {nameof(Contrato.FechaInicio)}, {nameof(Contrato.FechaTerm)}, {nameof(Contrato.MontoMensual)}, {nameof(Contrato.IdInquilino)},
                       p.{nameof(Inquilino.Nombre)}, p.{nameof(Inquilino.Apellido)}, {nameof(Contrato.IdInmueble)}, m.{nameof(Inmueble.Direccion)}
                 FROM Contratos i 
                 INNER JOIN Inquilinos p ON i.{nameof(Contrato.IdInquilino)} = p.{nameof(Inquilino.Id)}
@@ -33,6 +33,7 @@ public class RepositorioContrato
                             Id = reader.GetInt32(nameof(Contrato.Id)),
 							FechaInicio = reader.GetDateTime(nameof(Contrato.FechaInicio)),
 							FechaTerm = reader.GetDateTime(nameof(Contrato.FechaTerm)),
+                            MontoMensual = reader.GetDecimal(nameof(Contrato.MontoMensual)),
 							IdInquilino = reader.GetInt32(nameof(Contrato.IdInquilino)),
 							
 
@@ -60,7 +61,7 @@ public class RepositorioContrato
     }
 
 
-    public IList<Inmueble> ObtenerTodos()
+   /* public IList<Inmueble> ObtenerTodos()
 		{
 			 var inmuebles = new List<Inmueble>();
 			 using (var connection = new MySqlConnection(ConnectionString))
@@ -81,8 +82,8 @@ public class RepositorioContrato
                             Direccion = reader.GetString(nameof(Inmueble.Direccion)),
                             Ambientes = reader.GetInt32 (nameof(Inmueble.Ambientes)),
                             Uso = reader.GetString(nameof(Inmueble.Uso)),
-                            Valor = reader.GetDecimal (nameof(Inmueble.Valor)),
-                            Disponible = reader.GetString(nameof(Inmueble.Disponible)),
+                            Valor = reader.GetDouble (nameof(Inmueble.Valor)),
+                            //Disponible = reader.GetDouble(nameof(Inmueble.Disponible)),
                             PropietarioId = reader.GetInt32(nameof(Inmueble.PropietarioId)),
                             Duenio = new Propietario
 							{
@@ -97,19 +98,20 @@ public class RepositorioContrato
 				}
 			}
 			return inmuebles;
-		}
+		}*/
     
 
     public int AltaContrato(Contrato contrato){
         int id = 0;
         using (var connection = new MySqlConnection(ConnectionString)){
-            string sql = $@"INSERT INTO Contratos ( {nameof(Contrato.FechaInicio)}, {nameof(Contrato.FechaTerm)}, {nameof(Contrato.IdInquilino)}, {nameof(Contrato.IdInmueble)}) 
-                VALUES (@{nameof(Contrato.FechaInicio)}, @{nameof(Contrato.FechaTerm)}, @{nameof(Contrato.IdInquilino)},@{nameof(Contrato.IdInmueble)});           
+            string sql = $@"INSERT INTO Contratos ( {nameof(Contrato.FechaInicio)}, {nameof(Contrato.FechaTerm)}, {nameof(Contrato.MontoMensual)}, {nameof(Contrato.IdInquilino)}, {nameof(Contrato.IdInmueble)}) 
+                VALUES (@{nameof(Contrato.FechaInicio)}, @{nameof(Contrato.FechaTerm)}, @{nameof(Contrato.MontoMensual)}, @{nameof(Contrato.IdInquilino)},@{nameof(Contrato.IdInmueble)});           
                 SELECT LAST_INSERT_ID();";
             using (var command = new MySqlCommand(sql, connection)){
                 command.Parameters.AddWithValue($"@{nameof(Contrato.FechaInicio)}", contrato.FechaInicio);
                 command.Parameters.AddWithValue($"@{nameof(Contrato.FechaTerm)}", contrato.FechaTerm);
-                command.Parameters.AddWithValue($"@{nameof(Contrato.IdInquilino)}", contrato.IdInmueble);
+                command.Parameters.AddWithValue($"@{nameof(Contrato.MontoMensual)}", contrato.MontoMensual);
+                command.Parameters.AddWithValue($"@{nameof(Contrato.IdInquilino)}", contrato.IdInquilino);
                 command.Parameters.AddWithValue($"@{nameof(Contrato.IdInmueble)}", contrato.IdInmueble);
                
                 connection.Open();
@@ -128,9 +130,9 @@ public class RepositorioContrato
         Contrato? contrato = null;
         using (var connection = new MySqlConnection(ConnectionString))
         {
-                string sql = $@"SELECT i.{nameof(Contrato.Id)}, {nameof(Contrato.FechaInicio)}, {nameof(Contrato.FechaTerm)}, {nameof(Contrato.IdInquilino)}, 
+                string sql = $@"SELECT i.{nameof(Contrato.Id)}, {nameof(Contrato.FechaInicio)}, {nameof(Contrato.FechaTerm)}, {nameof(Contrato.MontoMensual)}, {nameof(Contrato.IdInquilino)}, 
                       p.{nameof(Inquilino.Nombre)}, p.{nameof(Inquilino.Apellido)}, {nameof(Contrato.IdInmueble)}, m.{nameof(Inmueble.Direccion)}
-                FROM Contratos i INNER JOIN Inquilinos p ON i.{nameof(Contrato.IdInquilino)} = p.{nameof(Inquilino.Id)}
+                FROM contratos i INNER JOIN Inquilinos p ON i.{nameof(Contrato.IdInquilino)} = p.{nameof(Inquilino.Id)}
                                   INNER JOIN Inmuebles m ON i.{nameof(Contrato.IdInmueble)} = m.{nameof(Inmueble.Id)}
                 WHERE i.{nameof(Contrato.Id)} = @id";
             using (var command = new MySqlCommand(sql, connection))
@@ -146,7 +148,8 @@ public class RepositorioContrato
                             Id = reader.GetInt32(nameof(Contrato.Id)),
 							FechaInicio = reader.GetDateTime(nameof(Contrato.FechaInicio)),
 							FechaTerm = reader.GetDateTime(nameof(Contrato.FechaTerm)),
-							IdInquilino = reader.GetInt32(nameof(Contrato.IdInquilino)),
+                            MontoMensual = reader.GetDecimal(nameof(Contrato.MontoMensual)),
+                            IdInquilino = reader.GetInt32(nameof(Contrato.IdInquilino)),
 							
 
 							Locatario = new Inquilino
@@ -172,25 +175,25 @@ public class RepositorioContrato
     }
 
     public int ModificarContrato(Contrato contrato){
-        int id = 0;
         using (var connection = new MySqlConnection(ConnectionString)){
-            string sql = $@"UPDATE Contratos SET 
-                    {nameof(Contrato.FechaInicio)} = @fechaInicio, 
-                    {nameof(Contrato.FechaTerm)} = @fechaTerm, 
-                    {nameof(Contrato.IdInquilino)} = @idInquilino, 
-                    {nameof(Contrato.IdInmueble)} = @idInmueble
-                WHERE {nameof(Contrato.Id)} = @id";           
+            string sql = $@"UPDATE contratos SET 
+                    {nameof(Contrato.FechaInicio)} = @{nameof(Contrato.FechaInicio)},
+                    {nameof(Contrato.FechaTerm)} = @{nameof(Contrato.FechaTerm)},
+                    {nameof(Contrato.MontoMensual)} = @{nameof(Contrato.MontoMensual)}
+                    {nameof(Contrato.IdInquilino)} = @{nameof(Contrato.IdInquilino)},
+                    {nameof(Contrato.IdInmueble)} = @{nameof(Contrato.IdInmueble)}
+                WHERE {nameof(Contrato.Id)} = @{nameof(Contrato.Id)}";           
             using (var command = new MySqlCommand(sql, connection)){
+                command.Parameters.AddWithValue($"@{nameof(Contrato.Id)}", contrato.Id);
                 command.Parameters.AddWithValue($"@{nameof(Contrato.FechaInicio)}", contrato.FechaInicio);
                 command.Parameters.AddWithValue($"@{nameof(Contrato.FechaTerm)}", contrato.FechaTerm);
+                command.Parameters.AddWithValue($"{nameof(Contrato.MontoMensual)}", contrato.MontoMensual);
                 command.Parameters.AddWithValue($"@{nameof(Contrato.IdInquilino)}", contrato.IdInmueble);
                 command.Parameters.AddWithValue($"@{nameof(Contrato.IdInmueble)}",contrato.IdInmueble);
 
                 connection.Open();
-                id = Convert.ToInt32(command.ExecuteScalar());
-                contrato.Id = id;
+                command.ExecuteNonQuery();
                 connection.Close();
-
 
             }
         }

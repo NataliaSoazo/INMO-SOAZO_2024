@@ -33,8 +33,8 @@ public class RepositorioInquilino
                         {
                             Id = reader.GetInt32(nameof(Inquilino.Id)),
                             Nombre = reader.GetString(nameof(Inquilino.Nombre)),
-                         Apellido = reader.GetString (nameof(Inquilino.Apellido)),
-                                Dni = reader.GetString(nameof(Inquilino.Dni)),
+                            Apellido = reader.GetString (nameof(Inquilino.Apellido)),
+                            Dni = reader.GetString(nameof(Inquilino.Dni)),
                             Email = reader.GetString (nameof(Inquilino.Email)),
                             Telefono = reader.GetString(nameof(Inquilino.Telefono)),
                             Domicilio = reader.GetString(nameof(Inquilino.Domicilio)),

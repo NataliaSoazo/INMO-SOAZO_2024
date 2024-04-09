@@ -4,32 +4,27 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace INMO_SOAZO_2024.Models;
     public class Contrato
     {
-        [Display(Name = "Código")]
+        [Display(Name = "CÓDIGO")]
         public int Id { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "Inicio del contrato")]
+        [Display(Name = "INICIO DEL CONTRATO")]
         public DateTime FechaInicio { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        [Display(Name = "Culminación")]
+        [Display(Name = "CULMINACIÓN")]
         public DateTime FechaTerm { get; set; }
-
-
-        [Display(Name = "Código Locatario")]
+        [Display(Name = "MONTO MENSUAL")]
+        public decimal MontoMensual;
         public int IdInquilino { get; set; }
-
+        [Display(Name = "LOCATARIO")]
         [Required]
         [ForeignKey(nameof(IdInquilino))]
         public Inquilino Locatario { get; set; }
-
         [Required]
-        [Display(Name = "Código Inmueble")]
         public int IdInmueble { get; set; }
-
-
         [ForeignKey(nameof(IdInmueble))]
 
-        [Display(Name = "Datos del inmueble")]
+        [Display(Name = "DATOS DEL INMUEBLE")]
         public Inmueble Datos { get; set; }
     }

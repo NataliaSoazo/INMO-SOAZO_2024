@@ -77,7 +77,7 @@ public class RepositorioInmueble
                             Direccion = reader.GetString(nameof(Inmueble.Direccion)),
                             Ambientes = reader.GetInt32 (nameof(Inmueble.Ambientes)),
                             Uso = reader.GetString(nameof(Inmueble.Uso)),
-                            Valor = reader.GetDecimal (nameof(Inmueble.Valor)),
+                            Valor = reader.GetDouble (nameof(Inmueble.Valor)),
                             Disponible = reader.GetString(nameof(Inmueble.Disponible)),
                             PropietarioId = reader.GetInt32(nameof(Inmueble.PropietarioId)),
                             Duenio = new Propietario
@@ -144,7 +144,7 @@ public class RepositorioInmueble
                             Direccion = reader.GetString(nameof(Inmueble.Direccion)),
                             Ambientes = reader.GetInt16 (nameof(Inmueble.Ambientes)),
                             Uso = reader.GetString(nameof(Inmueble.Uso)),
-                            Valor = reader.GetDecimal (nameof(Inmueble.Valor)),
+                            Valor = reader.GetDouble (nameof(Inmueble.Valor)),
                             Disponible = reader.GetString(nameof(Inmueble.Disponible)),
                             PropietarioId = reader.GetInt32(nameof(Inmueble.PropietarioId)),
                             Duenio = new Propietario

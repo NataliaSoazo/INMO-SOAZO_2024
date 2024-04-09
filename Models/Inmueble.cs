@@ -24,9 +24,8 @@ public class Inmueble
             [StringLength(8, MinimumLength = 4, ErrorMessage = "Ingrese un uso válido válido")]
             public String Uso { get; set; }
 
-            [Required(ErrorMessage = "Campo obligatorio")]
             [Display(Name = "VALOR POR CONTRATO")]
-            public decimal Valor { get; set; }
+            public double Valor { get; set; }
 
             [Display(Name = "DISPONIBLE")]
             [Required(ErrorMessage = "Campo obligatorio")]

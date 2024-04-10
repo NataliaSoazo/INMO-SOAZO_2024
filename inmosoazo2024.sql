@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-04-2024 a las 22:53:48
+-- Tiempo de generación: 10-04-2024 a las 04:47:34
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -31,9 +31,18 @@ CREATE TABLE `contratos` (
   `Id` int(11) NOT NULL,
   `FechaInicio` date NOT NULL,
   `FechaTerm` date NOT NULL,
+  `MontoMensual` double(15,0) NOT NULL,
   `IdInquilino` int(11) NOT NULL,
   `IdInmueble` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `contratos`
+--
+
+INSERT INTO `contratos` (`Id`, `FechaInicio`, `FechaTerm`, `MontoMensual`, `IdInquilino`, `IdInmueble`) VALUES
+(3, '2024-04-16', '2024-04-16', 0, 4, 16),
+(19, '2024-04-16', '2024-04-16', 0, 5, 15);
 
 -- --------------------------------------------------------
 
@@ -46,8 +55,8 @@ CREATE TABLE `inmuebles` (
   `Direccion` varchar(50) NOT NULL,
   `Ambientes` int(11) NOT NULL,
   `Uso` varchar(20) NOT NULL,
-  `Valor` decimal(11,0) NOT NULL,
-  `Disponible` varchar(10) NOT NULL,
+  `Valor` double(11,0) NOT NULL,
+  `Disponible` varchar(4) NOT NULL,
   `Propietarioid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -56,8 +65,10 @@ CREATE TABLE `inmuebles` (
 --
 
 INSERT INTO `inmuebles` (`Id`, `Direccion`, `Ambientes`, `Uso`, `Valor`, `Disponible`, `Propietarioid`) VALUES
-(15, 'Illia 900', 3, 'Vivienda', 80000, 'SI', 5),
-(16, 'LAS HERAS 780', 2, 'DPTO', 180000, 'SI', 4);
+(15, 'Illia 900', 3, 'Vivienda', 80000, 'NO', 5),
+(16, 'LAS HERAS 780', 2, 'DPTO', 180000, 'NO', 4),
+(17, 'Av Lafinur 1200', 4, 'Comercia', 4000000, 'SI', 3),
+(18, 'LAS HERAS 780', 3, 'DPTO', 1200000, 'LAS ', 3);
 
 -- --------------------------------------------------------
 
@@ -81,7 +92,8 @@ CREATE TABLE `inquilinos` (
 --
 
 INSERT INTO `inquilinos` (`Id`, `Nombre`, `Apellido`, `Dni`, `Email`, `Telefono`, `Domicilio`, `Ciudad`) VALUES
-(4, 'SELENA', 'GOMEZ', '15234765', 'celegomez@gmail.com', '2664578933', 'JUANA KOSLAY', 'JUANA KOSLAY');
+(4, 'SELENA', 'GOMEZ', '15234765', 'celegomez@gmail.com', '2664578933', 'JUANA KOSLAY', 'JUANA KOSLAY'),
+(5, 'MARCELA', 'SUAREZ', '35678465', 'msuarez@gmail.com', '2665347890', 'Sucre 290', 'SAN LUIS');
 
 -- --------------------------------------------------------
 
@@ -148,19 +160,19 @@ ALTER TABLE `propietarios`
 -- AUTO_INCREMENT de la tabla `contratos`
 --
 ALTER TABLE `contratos`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `inmuebles`
 --
 ALTER TABLE `inmuebles`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `inquilinos`
 --
 ALTER TABLE `inquilinos`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `propietarios`

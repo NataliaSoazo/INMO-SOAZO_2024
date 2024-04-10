@@ -64,4 +64,11 @@ public class ContratoController : Controller
         rp.EliminarContrato(id);
         return RedirectToAction(nameof(Index));
     }
+
+    public IActionResult Detalles( int id)
+    {  
+        RepositorioContrato rc = new RepositorioContrato();
+            var c = rc.getContrato(id);
+            return View(c); 
+    }   
 }

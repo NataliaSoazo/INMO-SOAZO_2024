@@ -1,0 +1,53 @@
+@model INMO_SOAZO_2024.Models.Contrato
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="container justify-content-center bg-secondary col-6" >
+    <h4 class="text-center">Detalles del contrato</h4>
+    <hr />
+    <dl class="row ">
+        <dt class = "col-6 " >
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.FechaTerm)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.FechaTerm)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.MontoMensual)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.MontoMensual)
+        </dd>
+        <dt class = "col-6 ">
+            DATOS DEL INQUILINO
+        </dt>
+        <dd class = "col-6">
+          CODIGO @Model.IdInquilino,  @Model.Locatario.Apellido @Model.Locatario.Nombre
+        </dd>
+        <dt class = "col-6">
+            DATOS DEL INMUEBLE
+        </dt>
+        <dd class = "col-6">
+           CODIGO @Model.IdInmueble, @Model.Datos.Direccion @Model.Datos.Uso
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Volver al listado</a>
+</div>

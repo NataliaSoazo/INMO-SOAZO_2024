@@ -43,7 +43,7 @@ public class RepositorioContrato
 								Apellido = reader.GetString(nameof(Inquilino.Apellido)),
 			
                             },
-							IdInmueble = reader.GetInt32(nameof(Inmueble.Id)),
+							IdInmueble = reader.GetInt32(nameof(Contrato.IdInmueble)),
 							Datos = new Inmueble
 							{
 								
@@ -118,8 +118,6 @@ public class RepositorioContrato
                 id = Convert.ToInt32(command.ExecuteScalar());
                 contrato.Id = id;
                 connection.Close();
-
-
             }
         }
         return id;
@@ -150,18 +148,15 @@ public class RepositorioContrato
 							FechaTerm = reader.GetDateTime(nameof(Contrato.FechaTerm)),
                             MontoMensual = reader.GetDecimal(nameof(Contrato.MontoMensual)),
                             IdInquilino = reader.GetInt32(nameof(Contrato.IdInquilino)),
-							
-
 							Locatario = new Inquilino
                             {
 								Nombre = reader.GetString(nameof(Inquilino.Nombre)),
 								Apellido = reader.GetString(nameof(Inquilino.Apellido)),
 			
                             },
-							IdInmueble = reader.GetInt32(nameof(Inmueble.Id)),
+							IdInmueble = reader.GetInt32(nameof(Contrato.IdInmueble)),
 							Datos = new Inmueble
 							{
-								
 								Direccion = reader.GetString(nameof(Inmueble.Direccion))
 
 							}
@@ -179,7 +174,7 @@ public class RepositorioContrato
             string sql = $@"UPDATE contratos SET 
                     {nameof(Contrato.FechaInicio)} = @{nameof(Contrato.FechaInicio)},
                     {nameof(Contrato.FechaTerm)} = @{nameof(Contrato.FechaTerm)},
-                    {nameof(Contrato.MontoMensual)} = @{nameof(Contrato.MontoMensual)}
+                    {nameof(Contrato.MontoMensual)} = @{nameof(Contrato.MontoMensual)},
                     {nameof(Contrato.IdInquilino)} = @{nameof(Contrato.IdInquilino)},
                     {nameof(Contrato.IdInmueble)} = @{nameof(Contrato.IdInmueble)}
                 WHERE {nameof(Contrato.Id)} = @{nameof(Contrato.Id)}";           
@@ -188,7 +183,7 @@ public class RepositorioContrato
                 command.Parameters.AddWithValue($"@{nameof(Contrato.FechaInicio)}", contrato.FechaInicio);
                 command.Parameters.AddWithValue($"@{nameof(Contrato.FechaTerm)}", contrato.FechaTerm);
                 command.Parameters.AddWithValue($"{nameof(Contrato.MontoMensual)}", contrato.MontoMensual);
-                command.Parameters.AddWithValue($"@{nameof(Contrato.IdInquilino)}", contrato.IdInmueble);
+                command.Parameters.AddWithValue($"@{nameof(Contrato.IdInquilino)}", contrato.IdInquilino);
                 command.Parameters.AddWithValue($"@{nameof(Contrato.IdInmueble)}",contrato.IdInmueble);
 
                 connection.Open();

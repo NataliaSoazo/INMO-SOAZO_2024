@@ -15,16 +15,16 @@ namespace INMO_SOAZO_2024.Models;
         [Display(Name = "CULMINACIÓN")]
         public DateTime FechaTerm { get; set; }
         [Display(Name = "MONTO MENSUAL")]
-        public decimal MontoMensual;
+        public double MontoMensual { get; set; }
         public int IdInquilino { get; set; }
-        [Display(Name = "LOCATARIO")]
+        [Display(Name = "ARRENDATARIO")]
         [Required]
         [ForeignKey(nameof(IdInquilino))]
-        public Inquilino Locatario { get; set; }
+        public Inquilino? Arrendatario { get; set; }
         [Required]
         public int IdInmueble { get; set; }
         [ForeignKey(nameof(IdInmueble))]
 
         [Display(Name = "DATOS DEL INMUEBLE")]
-        public Inmueble Datos { get; set; }
+        public Inmueble? Datos { get; set; }
     }

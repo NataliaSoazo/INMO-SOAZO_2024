@@ -33,11 +33,11 @@ public class RepositorioContrato
                             Id = reader.GetInt32(nameof(Contrato.Id)),
 							FechaInicio = reader.GetDateTime(nameof(Contrato.FechaInicio)),
 							FechaTerm = reader.GetDateTime(nameof(Contrato.FechaTerm)),
-                            MontoMensual = reader.GetDecimal(nameof(Contrato.MontoMensual)),
+                            MontoMensual = reader.GetDouble(nameof(Contrato.MontoMensual)),
 							IdInquilino = reader.GetInt32(nameof(Contrato.IdInquilino)),
 							
 
-							Locatario = new Inquilino
+							Arrendatario = new Inquilino
                             {
 								Nombre = reader.GetString(nameof(Inquilino.Nombre)),
 								Apellido = reader.GetString(nameof(Inquilino.Apellido)),
@@ -104,7 +104,7 @@ public class RepositorioContrato
     public int AltaContrato(Contrato contrato){
         int id = 0;
         using (var connection = new MySqlConnection(ConnectionString)){
-            string sql = $@"INSERT INTO Contratos ( {nameof(Contrato.FechaInicio)}, {nameof(Contrato.FechaTerm)}, {nameof(Contrato.MontoMensual)}, {nameof(Contrato.IdInquilino)}, {nameof(Contrato.IdInmueble)}) 
+            string sql = $@"INSERT INTO contratos ( {nameof(Contrato.FechaInicio)}, {nameof(Contrato.FechaTerm)}, {nameof(Contrato.MontoMensual)}, {nameof(Contrato.IdInquilino)}, {nameof(Contrato.IdInmueble)}) 
                 VALUES (@{nameof(Contrato.FechaInicio)}, @{nameof(Contrato.FechaTerm)}, @{nameof(Contrato.MontoMensual)}, @{nameof(Contrato.IdInquilino)},@{nameof(Contrato.IdInmueble)});           
                 SELECT LAST_INSERT_ID();";
             using (var command = new MySqlCommand(sql, connection)){
@@ -146,9 +146,9 @@ public class RepositorioContrato
                             Id = reader.GetInt32(nameof(Contrato.Id)),
 							FechaInicio = reader.GetDateTime(nameof(Contrato.FechaInicio)),
 							FechaTerm = reader.GetDateTime(nameof(Contrato.FechaTerm)),
-                            MontoMensual = reader.GetDecimal(nameof(Contrato.MontoMensual)),
+                            MontoMensual = reader.GetDouble(nameof(Contrato.MontoMensual)),
                             IdInquilino = reader.GetInt32(nameof(Contrato.IdInquilino)),
-							Locatario = new Inquilino
+							Arrendatario = new Inquilino
                             {
 								Nombre = reader.GetString(nameof(Inquilino.Nombre)),
 								Apellido = reader.GetString(nameof(Inquilino.Apellido)),
@@ -208,6 +208,14 @@ public class RepositorioContrato
             }
         }
          return 0;
+    }
+    public Boolean validarContrato(Contrato contrato){
+        int difAnios = contrato.FechaTerm.Year - contrato.FechaInicio.Year;
+       
+        if(contrato.FechaInicio < contrato.FechaTerm && difAnios>=2){
+            return true;
+        }else
+        return false;
     }
 
 }

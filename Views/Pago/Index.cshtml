@@ -1,0 +1,54 @@
+﻿@model IEnumerable<INMO_SOAZO_2024.Models.Pago>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+   
+    <a asp-action="Editar"method = "post">CREAR NUEVO PAGO</a>
+</p>
+<table class="table table-info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IdContrato)
+            </th>
+            <th>ACCIONES</th>
+        </tr>
+    </thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Id)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Fecha)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Nro)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IdContrato)
+				</td>
+                <td>
+                 <a asp-action="Detalles" asp-route-id=@item.Id><i class="fa fa-eye text-secondary" style="font-size:25px;"></i></a>
+                    <a asp-action="Editar" asp-route-id=@item.Id><i class="fa fa-pencil text-success" style="font-size:25px;"></i></a>
+                    <a asp-action="Eliminar" asp-route-id=@item.Id><i class="fa fa-trash text-danger" style="font-size:25px;"></i></a>
+                </td>
+			</tr>
+			}
+		</tbody>
+</table>

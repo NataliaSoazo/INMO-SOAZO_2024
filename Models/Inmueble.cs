@@ -14,7 +14,7 @@ public class Inmueble
             [StringLength(50, MinimumLength = 5, ErrorMessage = "Ingrese una dirección válida")]
     
             [Display(Name = "DIRECCIÓN")]
-            public string Direccion { get; set; }
+            public string? Direccion { get; set; }
 
             [Display(Name = "AMBIENTES")]
             [Required(ErrorMessage = "Campo obligatorio")]
@@ -22,19 +22,19 @@ public class Inmueble
             [Display(Name = "USO")]
             [Required(ErrorMessage = "Campo obligatorio")]
             [StringLength(8, MinimumLength = 4, ErrorMessage = "Ingrese un uso válido válido")]
-            public String Uso { get; set; }
+            public string? Uso { get; set; }
 
-            [Display(Name = "VALOR POR CONTRATO")]
-            public double Valor { get; set; }
+            [Display(Name = "PRECIO APROX.")]
+            public double? Valor { get; set; }
 
             [Display(Name = "DISPONIBLE")]
             [Required(ErrorMessage = "Campo obligatorio")]
-            public String Disponible { get; set; }
+            public string? Disponible { get; set; }
             [Display(Name = "DUEÑO")]
             [Required(ErrorMessage = "Campo obligatorio")]
             public int PropietarioId { get; set; }
             [ForeignKey(nameof(PropietarioId))] 
-            public Propietario Duenio { get; set; }
+            public Propietario? Duenio { get; set; }
 
             
         }

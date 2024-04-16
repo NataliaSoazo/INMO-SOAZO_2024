@@ -1,0 +1,71 @@
+@model INMO_SOAZO_2024.Models.Pago
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div class="container justify-content-center bg-secondary col-6" >
+    <h4 class="text-center">Detalles Pagos</h4>
+    <hr />
+    <dl class="row ">
+        <dt class = "col-6 " >
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Nro)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Nro)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+        <dt class = "col-6 ">
+            @Html.DisplayNameFor(model => model.Importe)
+        </dt>
+        <dd class = "col-6 ">
+            @Html.DisplayFor(model => model.Importe)
+        </dd>
+        <dt class = "col-6 ">
+        @Html.DisplayNameFor(model => model.Referencia)
+        </dt>
+        <dd class = "col-6">
+           $@Html.DisplayFor(model => model.Referencia)
+        </dd>
+        <dt class = "col-6">
+            @Html.DisplayNameFor(model => model.IdContrato)
+        </dt>
+        <dd class = "col-6">
+            @Html.DisplayFor(model => model.IdContrato)
+        </dd>
+        <dt class = "col-6 ">
+          DATOS DEL INMUEBLE
+        </dt>
+        <dd class = "col-6">
+           (@Model.DatosContrato.IdInmueble) @Model.DatosContrato.Datos.Direccion
+        </dd>
+         <dt class = "col-6 ">
+            DATOS DEL Arrendatario
+        </dt>
+        <dd class = "col-6">
+           (@Model.DatosContrato.Arrendatario.Nombre) @Model.DatosContrato.Arrendatario.Apellido  @Model.DatosContrato.Arrendatario.Email
+        </dd>
+         <dt class = "col-6 ">
+           DATOS DEL PROPIETARIO
+        </dt>
+        <dd class = "col-6">
+           (@Model.DatosContrato.Datos.Duenio.Id) @Model.DatosContrato.Datos.Duenio.Nombre  @Model.DatosContrato.Datos.Duenio.Apellido
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Volver al listado</a>
+</div>
